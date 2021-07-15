@@ -1,33 +1,22 @@
 const fs = require('fs')
 const axios = require('axios')
 const HTMLParser = require('fast-html-parser')
+const { isValidID, wait } = require('./utils.js')
+const { CLIEngine } = require('eslint')
 
-const caseStatusLink = `https://egov.uscis.gov/casestatus/mycasestatus.do`
-const fileName = 'data.txt'
-
-// Pause an async function for a given number of milliseconds
-function wait(ms) {
-  return new Promise(resolve => {
-    setTimeout(resolve, ms)
-  })
-}
-
-// Check if an ID is valid by matching it to a regular expression
-// eslint-disable-next-line
-const IDRegex = new RegExp(/^MSC2190\d{6}$/)
-function isValidID(id) {
-  return IDRegex.test(id)
-}
+// Program constants
+const STATUS_LINK = `https://egov.uscis.gov/casestatus/mycasestatus.do`
+const FILE_NAME = 'data.txt'
 
 // Check the case statuses
 async function checkCaseStatus() {
   // Check if file with IDs exists
-  if (!fs.existsSync(fileName)) {
-    return console.error(`Could not find file ${fileName} to read IDs from.`)
+  if (!fs.existsSync(FILE_NAME)) {
+    return console.error(`Could not find file ${FILE_NAME} to read IDs from.`)
   }
 
   // Read IDs and validate them
-  const IDs = fs.readFileSync(fileName, 'utf-8').split('\n').map(id => id.trim())
+  const IDs = fs.readFileSync(FILE_NAME, 'utf-8').split('\n').map(id => id.trim())
 
   // Make sure all IDs are valid
   if (!IDs.every(id => isValidID(id)))
@@ -37,7 +26,7 @@ async function checkCaseStatus() {
   const statuses = {}
   for (const ID of IDs) {
     const response = await axios
-      .get(`${caseStatusLink}?appReceiptNum=${ID}`)
+      .get(`${STATUS_LINK}?appReceiptNum=${ID}`)
       .catch(() => console.error('Error contacting the USCIS website.'))
       .then(await wait(500))
 
