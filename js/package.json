@@ -1,0 +1,20 @@
+{
+  "name": "USCIS-notifier",
+  "version": "1.0.0",
+  "description": "A daemon and web app that notifies you if your USCIS status has changed.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "keywords": [],
+  "author": "RogueArt <rogueart.dev@outlook.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^7.30.0"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "fast-html-parser": "^1.0.1"
+  }
+}
