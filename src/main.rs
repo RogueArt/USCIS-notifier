@@ -59,13 +59,6 @@ fn main() {
     pause();
 }
 
-fn pause() {
-    let mut stdout = stdout();
-    stdout.write_all(b"\nPress Enter to exit...").unwrap();
-    stdout.flush().unwrap();
-    stdin().read_exact(&mut [0]).unwrap();
-}
-
 // Makes an HTTP request to parse case status for a given ID
 fn get_case_status_from_id(id: &str) -> String {
     // Otherwise, make a GET request for each case status
@@ -111,4 +104,11 @@ fn get_ids_from_file(filename: &str) -> Vec<String> {
         .map(|x| x.to_owned())
         .collect();
     ids
+}
+
+fn pause() {
+    let mut stdout = stdout();
+    stdout.write_all(b"\nPress Enter to exit...").unwrap();
+    stdout.flush().unwrap();
+    stdin().read_exact(&mut [0]).unwrap();
 }
