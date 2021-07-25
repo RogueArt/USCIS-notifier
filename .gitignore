@@ -1,2 +1,4 @@
 /target
 data.txt
+node_modules
+*.exe
