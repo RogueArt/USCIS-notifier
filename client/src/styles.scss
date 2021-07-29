@@ -1,0 +1,21 @@
+.App {
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+}
+
+.title {
+  color: #0094B6;
+}
+
+[unselectable="on"] {
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+
+  /*
+    Introduced in IE 10.
+    See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+  */
+  -ms-user-select: none;
+  user-select: none;
+}
