@@ -1,8 +1,14 @@
+import './Buttons.scss'
+
 function Button({ onAddRow, onRemoveRow }) {
   return (
     <div style={{ textAlign: 'center' }}>
-      <button onClick={() => onAddRow()}>Add</button>
-      <button onClick={() => onRemoveRow()}>Remove</button>
+      <button className="row-button" onClick={() => onAddRow()}>
+        Add
+      </button>
+      <button className="row-button" onClick={() => onRemoveRow()}>
+        Remove
+      </button>
     </div>
   )
 }
