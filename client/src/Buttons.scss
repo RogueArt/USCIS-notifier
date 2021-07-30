@@ -1,0 +1,17 @@
+.row-button {
+  font-size: 16px;
+  font-family: 'Open Sans';
+  
+  color: #FAFAFA;
+  background-color: #0094B6;
+  border: 2px solid #0094B6;
+  border-radius: 8px;
+
+  margin: 24px 20px;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
