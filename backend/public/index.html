@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+    import { getName, getVersion, getTauriVersion } from "@tauri-apps/api/app";
+
+    let version = 0.0;
+    let tauriVersion = 0.0;
+    let appName = 'Unknown';
+
+    getName().then(n => { appName = n });
+    getVersion().then(v => { version = v });
+    getTauriVersion().then(v => { tauriVersion = v });
+
+    async function closeApp() {
+      await exit();
+    }
+
+    async function relaunchApp() {
+      await relaunch();
+    }
+
+  </script>
+
+</body>
+
+</html>
