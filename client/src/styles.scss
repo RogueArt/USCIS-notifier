@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+// Global styles
+body {
+  background-color: #FAFAFA;
+  margin: 0 auto;
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+  color: #0094B6;
+}
+
+th {
+  text-align: left; // By default it's centered
+}
+
+[unselectable="on"] {
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+
+  /*
+    Introduced in IE 10.
+    See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+  */
+  -ms-user-select: none;
+  user-select: none;
+}
+
+// Specific to the App component
+.App {
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 16px;
+}
