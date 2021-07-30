@@ -1,39 +1,44 @@
-import "./Table.scss";
+import './Table.scss'
 
-import React, { useState } from "react";
+import React from 'react'
 
-function Table(props) {
-  const [name, setName] = useState("");
-  const [ID, setID] = useState("");
+// Get stored data
+// import { data } from './data.js'
 
-  // Dynamically render contents of each row
-  function renderRows() {
-    return props.people.map((person, index) => {
-      return (
-        <tr>
-          <td>{index + 1}</td>
-          <td contentEditable spellcheck="false">
-            {person.ID}
-          </td>
-          <td contentEditable spellcheck="false">
-            {person.name}
-          </td>
-          <td contentEditable spellcheck="false">
-            {person.caseStatus}
-          </td>
-          <td contentEditable spellcheck="false">
-            {person.lastChecked}
-          </td>
-          <td></td>
-        </tr>
-      );
-    });
-  }
+function Table({ statuses, onContentChange }) {
+  const statusRows = statuses.map((status, index) => {
+    const key = index + 1
+    return (
+      <tr key={key}>
+        <td>{key}</td>
+        <td
+          contentEditable={true}
+          spellCheck={false}
+          onInput={(event) => {
+            onContentChange(index, { ID: event.currentTarget.textContent })
+          }}
+        >
+          {status.ID}
+        </td>
+        <td
+          contentEditable={true}
+          spellCheck={false}
+          onInput={(event) => {
+            onContentChange(index, { name: event.currentTarget.textContent })
+          }}
+        >
+          {status.name}
+        </td>
+        <td>{status.caseStatus}</td>
+        <td>{status.lastChecked}</td>
+      </tr>
+    )
+  })
 
   return (
-    <table class="table">
+    <table className="table">
       {/* Labels of each column */}
-      <thead class="table__head">
+      <thead className="table__head">
         <tr>
           <th>#</th>
           <th>ID</th>
@@ -44,9 +49,9 @@ function Table(props) {
       </thead>
 
       {/* Contents of each row */}
-      <tbody class="table__body">{renderRows()}</tbody>
+      <tbody className="table__body">{statusRows}</tbody>
     </table>
-  );
+  )
 }
 
-export default Table;
+export default Table

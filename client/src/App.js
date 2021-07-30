@@ -1,38 +1,48 @@
-import "./styles.scss";
+// Styles
+import './styles.scss'
 
-import Table from "./Table.js";
+// Components
+import Table from './Table.js'
+import Buttons from './Buttons.js'
 
-const data = [
-  {
-    ID: "MSC019940",
-    name: "John Doe",
-    caseStatus: "Your case was approved",
-    lastChecked: "July 27, 2021",
-    previousStatus: "Your case was approved"
-  },
-  {
-    ID: "MSC120498",
-    name: "Reallyreallylong Name",
-    caseStatus: "Your case was approved",
-    lastChecked: "July 28, 2021",
-    previousStatus: "Your case was approved"
-  },
-  {
-    ID: "MSC10249",
-    name: "Anotherreally long Name",
-    caseStatus: "Your case was received in the mail",
-    lastChecked: "July 28, 2021",
-    previousStatus: "Your case is to be reviewed"
-  }
-];
+// Data
+import { caseStatuses, defaultStatus } from './data.js'
+
+import React, { useState } from 'react'
 
 export default function App() {
+  const [statuses, setStatus] = useState(caseStatuses)
+
+  // Triggered whenever table entries are edited
+  function handleContentChange(id, change) {
+    console.log(change)
+    // Make a copy of the statuses array, update changed value
+    const newStatuses = [...statuses]
+    newStatuses[id] = Object.assign(newStatuses[id], change)
+    console.log(newStatuses[id])
+
+    setStatus(newStatuses)
+  }
+
+  // Triggered when adding new row
+  function handleAddRow() {
+    const newStatuses = statuses.concat(defaultStatus)
+    setStatus(newStatuses)
+  }
+
+  // Triggered when removing a new row
+  function handleRemoveRow() {
+    const newStatuses = statuses.slice(statuses, statuses.length - 1)
+    setStatus(newStatuses)
+  }
+
   return (
     <div className="App">
       <h1 className="title" unselectable="on">
         USCIS Case Status Notifier
       </h1>
-      <Table people={data} />
+      <Table statuses={statuses} onContentChange={handleContentChange} />
+      <Buttons onAddRow={handleAddRow} onRemoveRow={handleRemoveRow} />
     </div>
-  );
+  )
 }
