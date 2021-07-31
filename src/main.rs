@@ -18,6 +18,9 @@ use reqwest::blocking;
 use select::document::Document;
 use select::predicate::Name;
 
+// For saving and reading from a file
+mod json;
+
 const FILE_NAME: &str = r"data.txt";
 const STATUS_LINK: &str = "https://egov.uscis.gov/casestatus/mycasestatus.do";
 const REQUEST_DELAY: Duration = Duration::from_millis(250);
