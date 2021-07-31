@@ -1,20 +1,20 @@
 const caseStatuses = [
   {
-    ID: 'MSC019940',
+    ID: 'MSC2190000001',
     name: 'John Doe',
     caseStatus: 'Your case was approved',
     lastChecked: 'July 27, 2021',
     previousStatus: 'Your case was approved',
   },
   {
-    ID: 'MSC120498',
+    ID: 'MSC2190000002',
     name: 'Reallyreallylong Name',
     caseStatus: 'Your case was approved',
     lastChecked: 'July 28, 2021',
     previousStatus: 'Your case was approved',
   },
   {
-    ID: 'MSC10249',
+    ID: 'MSC219000003',
     name: 'Anotherreally long Name',
     caseStatus: 'Your case was received in the mail',
     lastChecked: 'July 28, 2021',
@@ -24,7 +24,7 @@ const caseStatuses = [
 
 const defaultStatus = [
   {
-    ID: 'AAA00000',
+    ID: 'MSC219000000',
     name: 'Your Name',
     caseStatus: 'Unknown',
     lastChecked: 'Never',
