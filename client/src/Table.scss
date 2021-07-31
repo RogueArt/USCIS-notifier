@@ -2,7 +2,13 @@
   margin: 0 auto;
 }
 
-td, th {
+td,
+th {
   padding-left: 0.5em;
   padding-right: 0.5em;
+  border: none;
+}
+
+table {
+  border-collapse: collapse;
 }
