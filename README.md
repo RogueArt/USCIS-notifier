@@ -1,8 +1,8 @@
 # About
 
-USCIS notifier is a desktop app and daemon that notifies you via a desktop notification if your USCIS status has changed. USCIS notifier is built with Rust using the GTK for the GUI.
+USCIS notifier is a desktop app that notifies you via a desktop notification if your USCIS status has changed. USCIS notifier is built with React on the frontend and Rust on the backend.
 
-Currently, this compiles to an executable that can be run from the command line. A GUI is within the roadmap (see projects section of this repository).
+Currently, this compiles to an executable that can be run from the command line. A GUI version is currently begin developed right now (see projects section of this repository).
 
 ![Screenshot 2021-07-17 155854](https://user-images.githubusercontent.com/57082175/126051114-db583cca-c63e-497a-8838-e699e029e2a8.png)
 
