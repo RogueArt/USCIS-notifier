@@ -25,7 +25,7 @@ export default function App() {
   function handleKeyPress(event) {
     // Ctrl + Z for undoing changes
     const { key, ctrlKey } = event
-    if (ctrlKey && key === 'z') { undoLastAction() }
+    if (!event.repeat && ctrlKey && key === 'z') { undoLastAction() }
   }
 
   // Undo the last action that the user did
@@ -36,13 +36,6 @@ export default function App() {
     // Get the last action, figure out its type
     const { type, data } = previousActions.pop()
     switch (type) {
-      // Set the ID or name to its previous value
-      case 'ID':
-      case 'name':
-        const { id, change } = data
-        handleContentChange(id, change, true)
-        break
-
       // Remove the added row
       case 'rowAdd':
         handleRemoveRow(true)
@@ -75,13 +68,9 @@ export default function App() {
   }, [])
 
   // Triggered whenever table entries are edited
-  function handleContentChange(id, change, shouldUndo) {
-    // Add latest change to the undo stack
-    const [key] = Object.keys(change)
-    if (!shouldUndo) addChangeToUndos({ type: key, data: { id, change } })
-
+  function handleContentChange(id, change) {
     // Make a copy of the statuses array, update changed value
-    const newStatuses = [...statusesRef.current]
+    const newStatuses = [...statuses]
     newStatuses[id] = Object.assign(newStatuses[id], change)
 
     setStatus(newStatuses)
