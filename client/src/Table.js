@@ -1,21 +1,21 @@
 import './Table.scss'
 
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 // Helper functions
 import { isValidID } from './utils.js'
 
 function Table({ statuses, onContentChange }) {
-  const [cursorPos, setCursorPos] = useState(0)
-
+  // Generate all the rows of the table beforehand
   const statusRows = statuses.map((status, index) => {
     const key = index + 1
-
     return (
       // Turn table red if the ID isn't valid
       <tr
         key={key}
-        style={{ backgroundColor: isValidID(status.ID) ? '' : '#FF7F7F' }}
+        style={{
+          backgroundColor: isValidID(status.ID) ? '#FAFAFA' : '#FF7F7F',
+        }}
       >
         {/* Number each row */}
         <td>{key}</td>
@@ -25,12 +25,9 @@ function Table({ statuses, onContentChange }) {
           suppressContentEditableWarning={true}
           contentEditable={true}
           spellCheck={false}
-          onInput={event => {
-            setCursorPos(event.target.selectionStart)
-            onContentChange(index, { ID: event.currentTarget.textContent })
-          }}
-          onFocus={event => {
-            event.target.selectionStart = cursorPos
+          value={status.ID}
+          onInput={e => {
+            onContentChange(index, { ID: e.target.innerText })
           }}
         >
           {status.ID}
@@ -41,13 +38,8 @@ function Table({ statuses, onContentChange }) {
           suppressContentEditableWarning={true}
           contentEditable={true}
           spellCheck={false}
-          onInput={event => {
-            setCursorPos(event.target.selectionStart)
-            onContentChange(index, { name: event.currentTarget.textContent })
-          }}
-          onChange={event => {
-            event.target.selectionStart = cursorPos
-          }}
+          value={status.name}
+          onInput={e => onContentChange(index, { name: e.target.innerText })}
         >
           {status.name}
         </td>
@@ -59,6 +51,7 @@ function Table({ statuses, onContentChange }) {
     )
   })
 
+  // Now we render the entire table
   return (
     <table className="table">
       {/* Labels of each column */}

@@ -69,11 +69,9 @@ export default function App() {
 
   // Triggered whenever table entries are edited
   function handleContentChange(id, change) {
-    // Make a copy of the statuses array, update changed value
-    const newStatuses = [...statuses]
-    newStatuses[id] = Object.assign(newStatuses[id], change)
-
-    setStatus(newStatuses)
+    // Update changed value, set state to copy of statuses array
+    statuses[id] = Object.assign(statuses[id], change)
+    setStatus(statuses)
   }
 
   // Triggered when adding new row
