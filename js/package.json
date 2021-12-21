@@ -14,7 +14,7 @@
     "eslint": "^7.30.0"
   },
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "fast-html-parser": "^1.0.1"
   }
 }
