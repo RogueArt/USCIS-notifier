@@ -55,7 +55,7 @@ pub fn save_info_to_file(file_path: &str, statuses: Vec<CaseStatus>) {
   }
 
   // Open the file
-  let mut file = OpenOptions::new().write(true).open(file_path).expect("Couldn't open file");
+  let mut file = OpenOptions::new().write(true).truncate(true).open(file_path).expect("Couldn't open file");
 
   // Save data to file
   let statuses_as_string = serde_json::to_string_pretty(&statuses).unwrap();

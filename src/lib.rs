@@ -15,7 +15,7 @@ use std::time::Duration;
 use chrono::offset::Local;
 
 // Global constants
-const STATUS_LINK: &str = "https://egov.uscis.gov/casestatus/mycasestatus.do";
+const STATUS_LINK: &str = "https://egov.uscis.gov/casestatus/mycasestatus.do?changeLocal=&";
 pub const REQUEST_DELAY: Duration = Duration::from_millis(100);
 pub const ONE_HOUR: Duration = Duration::from_secs(3600);
 pub const FILE_PATH: &str = "data.json";
@@ -29,7 +29,8 @@ TO-DO:
 // Makes an HTTP request to parse current case status for a given ID
 pub fn get_current_status_from_id(id: &str) -> String {
     // Otherwise, make a GET request for each case status
-    let res = blocking::get(format!("{}?appReceiptNum={}", STATUS_LINK, id)).unwrap();
+    let client = reqwest::blocking::Client::new();
+    let res = client.post(format!("{}appReceiptNum={}&initCaseSearch=CHECK+STATUS", STATUS_LINK, id)).send().unwrap();
 
     // Convert response into HTML document
     let document = Document::from_read(res).unwrap();
